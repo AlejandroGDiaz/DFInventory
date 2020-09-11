@@ -36,7 +36,7 @@ class InventarioView extends React.Component{
     renderTable(){
         return(
             <div>
-                <table className="ui fixed single line celled table">
+                <table className="ui fixed table">
                     <thead>
                         <tr>
                             <th>Modelo</th>
@@ -55,7 +55,7 @@ class InventarioView extends React.Component{
 
     render(){
         return(
-            <div>
+            <div className="ui container" style={{marginTop:"20px"}}>
                 {this.renderTable()}
                 <button className="ui button left floated labeled icon" style={{marginTop:"15px"}} onClick={this.props.onCancel}><i className="angle left icon"></i>Regresar</button>
             </div>

@@ -50,7 +50,7 @@ class RegisterView extends React.Component{
 
     render(){
         return(
-            <div>
+            <div className="ui container" style={{marginTop:"20px"}}>
                 {this.renderTable()}
                 <button className="ui button left floated labeled icon" style={{marginTop:"15px"}} onClick={this.props.onCancel}><i className="angle left icon"></i>Regresar</button>
             </div>
