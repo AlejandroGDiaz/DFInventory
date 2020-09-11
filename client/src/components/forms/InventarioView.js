@@ -36,7 +36,7 @@ class InventarioView extends React.Component{
     renderTable(){
         return(
             <div>
-                <table className="ui fixed table">
+                <table className="ui collapsing table">
                     <thead>
                         <tr>
                             <th>Modelo</th>
