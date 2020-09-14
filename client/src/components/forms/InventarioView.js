@@ -1,4 +1,5 @@
 import React from "react";
+import _ from "lodash";
 import {connect} from "react-redux";
 import * as actions from "../../actions";
 
@@ -9,8 +10,9 @@ class InventarioView extends React.Component{
     }
 
     renderRows(){
+        const sortedInventory = _.sortBy(this.props.inventario, "codigo")
         if(this.props.inventoryValues.sucursal==="Mexicali"){
-            return this.props.inventario.map(product => {
+            return sortedInventory.map(product => {
                 return(
                     <tr key={product._id}>
                         <td>{product.codigo}</td>
@@ -21,7 +23,7 @@ class InventarioView extends React.Component{
             })
         }
         else if (this.props.inventoryValues.sucursal==="Queretaro"){
-            return this.props.inventario.map(product => {
+            return sortedInventory.map(product => {
                 return(
                     <tr key={product._id}>
                         <td>{product.codigo}</td>
@@ -53,9 +55,18 @@ class InventarioView extends React.Component{
 
     }
 
+    renderTitle(){
+        if(this.props.inventoryValues.sucursal==="Mexicali"){
+            return <h2 className="ui dividing header">Inventario en Mexicali</h2>
+        }
+        return <h2 className="ui dividing header">Inventario en Querétaro</h2>
+        
+    }
+
     render(){
         return(
             <div className="ui container" style={{marginTop:"20px"}}>
+                {this.renderTitle()}
                 {this.renderTable()}
                 <button className="ui button left floated labeled icon" style={{marginTop:"15px"}} onClick={this.props.onCancel}><i className="angle left icon"></i>Regresar</button>
             </div>
