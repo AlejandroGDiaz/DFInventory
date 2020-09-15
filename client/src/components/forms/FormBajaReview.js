@@ -24,6 +24,9 @@ const FormBajaReview = ({onCancel, bajaValues, removeMaterial, history }) =>{
                     <label style={{marginBottom:"20px"}}>Responsable:</label> {bajaValues.responsable}
                 </div>
                 <div className="field" style={{fontSize:"20px"}}>
+                    <label style={{marginBottom:"20px"}}>Responsable de Digital Fire:</label> {bajaValues.responsableDF}
+                </div>
+                <div className="field" style={{fontSize:"20px"}}>
                     <label style={{marginBottom:"20px"}}>Obra:</label> {bajaValues.obra}
                 </div>
             </div>

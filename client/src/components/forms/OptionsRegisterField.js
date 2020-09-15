@@ -10,6 +10,7 @@ export default ({input, label, meta:{error, touched}}) => {
                 <option value="sucursal">Sucursal</option>
                 <option value="contratista">Contratista</option>
                 <option value="responsable">Responsable</option>
+                <option value="responsableDF">Responsable de Digital Fire</option>
                 <option value="obra">Obra</option>
                 <option value="fecha">Fecha</option>
             </select>

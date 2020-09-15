@@ -3,11 +3,18 @@ import _ from "lodash";
 import {connect} from "react-redux";
 import * as actions from "../../actions";
 
+import Print from "../print/Print";
+
 class InventarioView extends React.Component{
 
+    
     componentDidMount(){
         this.props.fetchInventory(this.props.inventoryValues)
     }
+    
+    //sortedInventory = _.sortBy(this.props.inventario, "codigo")
+    title = this.props.inventoryValues.sucursal==="Mexicali" ? "Inventario en Mexicali" : "Inventario en Querétaro";
+
 
     renderRows(){
         const sortedInventory = _.sortBy(this.props.inventario, "codigo")
@@ -38,7 +45,7 @@ class InventarioView extends React.Component{
     renderTable(){
         return(
             <div>
-                <table className="ui collapsing table">
+                <table className="ui celled table">
                     <thead>
                         <tr>
                             <th>Modelo</th>
@@ -55,18 +62,29 @@ class InventarioView extends React.Component{
 
     }
 
-    renderTitle(){
-        if(this.props.inventoryValues.sucursal==="Mexicali"){
-            return <h2 className="ui dividing header">Inventario en Mexicali</h2>
-        }
-        return <h2 className="ui dividing header">Inventario en Querétaro</h2>
-        
+    getData(){
+        const data = [];
+        const sortedInventory = _.sortBy(this.props.inventario, "codigo") 
+        sortedInventory.map(product => data.push(Object.values(product)))
+        const slicedData = data.map(field => field.slice(1))
+        return slicedData;
     }
 
+
     render(){
+
+     
+
         return(
             <div className="ui container" style={{marginTop:"20px"}}>
-                {this.renderTitle()}
+                <h2 className="ui dividing header">{this.title}</h2>
+                <Print 
+                    title={this.title} 
+                    headers={[["Modelo", "Descripción", "Cantidad"]]} 
+                    data={this.getData()} 
+                    className="ui button right floated"
+                    style={{marginBottom:"20px"}}
+                />
                 {this.renderTable()}
                 <button className="ui button left floated labeled icon" style={{marginTop:"15px"}} onClick={this.props.onCancel}><i className="angle left icon"></i>Regresar</button>
             </div>

@@ -49,7 +49,7 @@ module.exports = app => {
 
     app.post("/api/product/baja", async (req, res) => {
 
-        let {codigo, sucursal, cantidad, contratista, responsable, obra} = req.body;
+        let {codigo, sucursal, cantidad, contratista, responsable, responsableDF, obra} = req.body;
 
         try{
             if(sucursal == "Mexicali"){
@@ -65,6 +65,7 @@ module.exports = app => {
                         cantidad: parseInt(cantidad),
                         contratista: _.toUpper(contratista),
                         responsable: _.toUpper(responsable),
+                        responsableDF: _.toUpper(responsableDF),
                         obra: _.toUpper(obra),
                         fecha: moment().format("DD/MM/YYYY")
 
@@ -90,6 +91,7 @@ module.exports = app => {
                         cantidad: parseInt(cantidad),
                         contratista: _.toUpper(contratista),
                         responsable: _.toUpper(responsable),
+                        responsableDF: _.toUpper(responsableDF),
                         obra: _.toUpper(obra),
                         fecha: moment().format("DD/MM/YYYY")
 

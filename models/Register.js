@@ -7,6 +7,7 @@ const registerSchema = new Schema ({
     cantidad: Number,
     contratista: String,
     responsable: String,
+    responsableDF: String,
     obra: String,
     fecha: String
 });

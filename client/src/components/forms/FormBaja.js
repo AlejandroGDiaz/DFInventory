@@ -17,6 +17,7 @@ class FormBaja extends React.Component{
                 <Field label="Cantidad" type="text" name="cantidad" component={TextField} />
                 <Field label="Contratista" type="text" name="contratista" component={TextField} />
                 <Field label="Responsable" type="text" name="responsable" component={TextField} />
+                <Field label="Responsable de Digital Fire" type="text" name="responsableDF" component={TextField} />
                 <Field label="Obra" type="text" name="obra" component={TextField} />
             </div>
         )
@@ -62,6 +63,10 @@ function validate(values){
 
     if(!values.responsable){
         errors.responsable = "Debes ingresar un responsable"
+    }
+
+    if(!values.responsableDF){
+        errors.responsableDF = "Debes ingresar un responsable de Digital Fire"
     }
 
     if(!values.obra){

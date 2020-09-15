@@ -19,6 +19,7 @@ class RegisterView extends React.Component{
                     <td>{register.cantidad}</td>
                     <td>{register.contratista}</td>
                     <td>{register.responsable}</td>
+                    <td>{register.responsableDF}</td>
                     <td>{register.obra}</td>
                 </tr>
             );
@@ -28,7 +29,7 @@ class RegisterView extends React.Component{
     renderTable(){
         return(
             <div>
-                <table className="ui fixed single line celled table">
+                <table className="ui celled table">
                     <thead>
                         <tr>
                             <th>Fecha</th>
@@ -37,6 +38,7 @@ class RegisterView extends React.Component{
                             <th>Cantidad</th>
                             <th>Contratista</th>
                             <th>Responsable</th>
+                            <th>Responsable de DF</th>
                             <th>Obra</th>
                         </tr>
                     </thead>
