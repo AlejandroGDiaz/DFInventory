@@ -26,7 +26,8 @@ const Dashboard = () => {
                 title="Dar de baja material"
                 description="Aparecerá un formulario para poder sacar material del sistema. Solicitará
                 el modelo del producto, la sucursal, la cantidad a retirar, el nombre del contratista, la persona responsable
-                que se llevó el material a nombre del contratista y la obra a la que fue destinada. En caso de ser llenado correctamente, 
+                que se llevó el material a nombre del contratista, el responsable de Digital Fire
+                que entregó el material y la obra a la que fue destinada. En caso de ser llenado correctamente, 
                 se actualizará la cantidad del producto y se creará un Registro del material que salió de la 
                 sucursal."
                 route="/baja"
@@ -44,7 +45,7 @@ const Dashboard = () => {
             <Card 
                 title="Inventario"
                 description="Se seleccionará la sucursal a revisar y posteriormente aparacerá el total de materiales que hay
-                en stock de dicha sucursal."
+                en stock de dicha sucursal. Se tendrá la opción de poder descargar el archivo tanto en PDF como Excel."
                 route="/inventario"
                 button="Buscar"
             />

@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import * as actions from "../../actions";
 
 import Print from "../print/Print";
+import PrintCSV from "../print/PrintCSV";
 
 class InventarioView extends React.Component{
 
@@ -70,6 +71,17 @@ class InventarioView extends React.Component{
         return slicedData;
     }
 
+    getDataForCSV(){
+        const headers = ["Modelo", "Descripción", "Cantidad" ];
+        const data = [];
+        const sortedInventory = _.sortBy(this.props.inventario, "codigo") 
+        sortedInventory.map(product => data.push(Object.values(product)))
+        const slicedData = data.map(field => field.slice(1))
+        slicedData.splice(0, 0, headers);
+        return slicedData;
+         
+    }
+
 
     render(){
 
@@ -78,6 +90,12 @@ class InventarioView extends React.Component{
         return(
             <div className="ui container" style={{marginTop:"20px"}}>
                 <h2 className="ui dividing header">{this.title}</h2>
+                <button 
+                    className="ui button left floated labeled icon" 
+                    style={{marginBottom:"20px"}} onClick={this.props.onCancel}>
+                        <i className="angle left icon"></i>
+                        Regresar
+                </button>
                 <Print 
                     title={this.title} 
                     headers={[["Modelo", "Descripción", "Cantidad"]]} 
@@ -85,8 +103,12 @@ class InventarioView extends React.Component{
                     className="ui button right floated"
                     style={{marginBottom:"20px"}}
                 />
+                <PrintCSV 
+                    data = {this.getDataForCSV()}
+                    title = "Inventario.csv"
+                    className = "ui button right floated green"
+                />
                 {this.renderTable()}
-                <button className="ui button left floated labeled icon" style={{marginTop:"15px"}} onClick={this.props.onCancel}><i className="angle left icon"></i>Regresar</button>
             </div>
         )
     }

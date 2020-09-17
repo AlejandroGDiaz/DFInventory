@@ -21,8 +21,20 @@ class FormRegister extends React.Component{
                 <h2 className="ui division header">Llenado para la búsqueda de un registro</h2>
                 <form onSubmit={this.props.handleSubmit(this.props.onFormRegisterSubmit)} className="ui form">
                     {this.renderContent()}
-                    <Link className="ui button left floated labeled icon" to="/" style={{marginTop:"15px"}}><i className="angle left icon"></i>Regresar</Link>
-                    <button className="ui button right floated green labeled icon" style={{marginTop:"15px"}} type="submit"><i className="angle right icon"></i>Siguiente</button>
+                    <Link 
+                        className="ui button left floated labeled icon" 
+                        to="/" 
+                        style={{marginTop:"15px"}}>
+                            <i className="angle left icon"></i>
+                                Regresar
+                    </Link>
+                    <button 
+                        className="ui button right floated green labeled icon" 
+                        style={{marginTop:"15px"}} 
+                        type="submit">
+                            <i className="angle right icon"></i>
+                                Siguiente
+                    </button>
                 </form>
             </div>
         )

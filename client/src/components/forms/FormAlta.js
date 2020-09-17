@@ -26,8 +26,20 @@ class FormAlta extends React.Component{
                 <h2 className="ui dividing header">Llenado para ingreso de material</h2>
                 <form onSubmit={this.props.handleSubmit(this.props.onFormAltaSubmit)} className="ui form">
                     {this.renderFields()}
-                    <Link className="ui button left floated labeled icon" to="/" style={{marginTop:"15px"}}><i className="angle left icon"></i>Regresar</Link>
-                    <button className="ui button right floated green labeled icon" style={{marginTop:"15px"}} type="submit"><i className="angle right icon"></i>Siguiente</button>
+                    <Link 
+                        className="ui button left floated labeled icon" 
+                        to="/" 
+                        style={{marginTop:"15px"}}>
+                            <i className="angle left icon"></i>
+                            Regresar
+                    </Link>
+                    <button 
+                        className="ui button right floated green labeled icon" 
+                        style={{marginTop:"15px"}} 
+                        type="submit">
+                            <i className="angle right icon"></i>
+                            Siguiente
+                    </button>
                 </form>
             </div>
         );
