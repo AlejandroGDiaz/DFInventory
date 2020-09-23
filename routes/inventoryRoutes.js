@@ -15,6 +15,15 @@ module.exports = app => {
                 const result = await Product.find({cantidadQRO: {$gt:0}}, "codigo descripcion cantidadQRO")
                 res.send(result)
             }
+            else if (sucursal == "Total"){
+                const result = await Product.find(
+                    {$or: [
+                        {cantidadMXLI: {$gt:0}},
+                        {cantidadQRO: {$gt:0}}
+                    ]
+                    })
+                res.send(result)
+            }
         }
         catch{
             res.send("");

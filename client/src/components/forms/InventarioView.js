@@ -13,10 +13,6 @@ class InventarioView extends React.Component{
         this.props.fetchInventory(this.props.inventoryValues)
     }
     
-    //sortedInventory = _.sortBy(this.props.inventario, "codigo")
-    title = this.props.inventoryValues.sucursal==="Mexicali" ? "Inventario en Mexicali" : "Inventario en Querétaro";
-
-
     renderRows(){
         const sortedInventory = _.sortBy(this.props.inventario, "codigo")
         if(this.props.inventoryValues.sucursal==="Mexicali"){
@@ -41,26 +37,78 @@ class InventarioView extends React.Component{
                 );
             })
         }
+        else if (this.props.inventoryValues.sucursal === "Total") {
+            return sortedInventory.map(product => {
+                return(
+                    <tr key={product._id}>
+                        <td>{product.codigo}</td>
+                        <td>{product.descripcion}</td>
+                        <td>{product.cantidadMXLI}</td>
+                        <td>{product.cantidadQRO}</td>
+                    </tr>
+                );
+            })
+        }
      }
 
     renderTable(){
-        return(
-            <div>
-                <table className="ui celled table">
+        if (this.props.inventoryValues.sucursal==="Total")
+        {
+          return(
+              <div>
+                  <table className="ui celled table">
                     <thead>
                         <tr>
                             <th>Modelo</th>
                             <th>Descripción</th>
-                            <th>Cantidad</th>
+                            <th>Cantidad en Mexicali</th>
+                            <th>Cantidad en Querétaro</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.renderRows()}
                     </tbody>
                 </table>
-            </div>
-        );
+              </div>
+          )  
+        } else {
+            return(
+                <div>
+                    <table className="ui celled table">
+                        <thead>
+                            <tr>
+                                <th>Modelo</th>
+                                <th>Descripción</th>
+                                <th>Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.renderRows()}
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+        
 
+    }
+
+    getTitle(){
+        if(this.props.inventoryValues.sucursal==="Total"){
+            return "Inventario Total"
+        }else if(this.props.inventoryValues.sucursal==="Mexicali"){
+            return "Inventario en Mexicali"
+        } else if(this.props.inventoryValues.sucursal==="Queretaro"){
+            return "Inventario en Querétaro"
+        }
+    }
+
+    getHeaders(){
+        if(this.props.inventoryValues.sucursal==="Total"){
+            return [["Modelo", "Descripción", "CantidadMXLI", "CantidadQRO"]]
+        }else{
+            return [["Modelo", "Descripción", "Cantidad"]]
+        }
     }
 
     getData(){
@@ -72,7 +120,10 @@ class InventarioView extends React.Component{
     }
 
     getDataForCSV(){
-        const headers = ["Modelo", "Descripción", "Cantidad" ];
+        let headers = ["Modelo", "Descripción", "Cantidad"]
+        if (this.props.inventoryValues.sucursal==="Total"){
+            headers = ["Modelo", "Descripción", "CantidadMXLI", "CantidadQRO"]
+        }
         const data = [];
         const sortedInventory = _.sortBy(this.props.inventario, "codigo") 
         sortedInventory.map(product => data.push(Object.values(product)))
@@ -84,12 +135,9 @@ class InventarioView extends React.Component{
 
 
     render(){
-
-     
-
         return(
             <div className="ui container" style={{marginTop:"20px"}}>
-                <h2 className="ui dividing header">{this.title}</h2>
+                <h2 className="ui dividing header">{this.getTitle()}</h2>
                 <button 
                     className="ui button left floated labeled icon" 
                     style={{marginBottom:"20px"}} onClick={this.props.onCancel}>
@@ -97,8 +145,8 @@ class InventarioView extends React.Component{
                         Regresar
                 </button>
                 <Print 
-                    title={this.title} 
-                    headers={[["Modelo", "Descripción", "Cantidad"]]} 
+                    title={this.getTitle()} 
+                    headers={this.getHeaders()} 
                     data={this.getData()} 
                     className="ui button right floated blue"
                     style={{marginBottom:"20px"}}
