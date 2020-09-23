@@ -100,7 +100,7 @@ class InventarioView extends React.Component{
                     title={this.title} 
                     headers={[["Modelo", "Descripción", "Cantidad"]]} 
                     data={this.getData()} 
-                    className="ui button right floated"
+                    className="ui button right floated blue"
                     style={{marginBottom:"20px"}}
                 />
                 <PrintCSV 
