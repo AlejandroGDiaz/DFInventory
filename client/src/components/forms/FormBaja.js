@@ -13,6 +13,7 @@ class FormBaja extends React.Component{
             <div>
                 <Field label="Modelo" type="text" name="codigo" component={TextField} list="codigo"/>
                 <CodigoDataList id="codigo"/>
+                <Field label="Número de cotización" name="numeroDeCotizacion" component={TextField}/>
                 <Field label="Sucursal" name="sucursal" component={OptionsField}/>
                 <Field label="Cantidad" type="text" name="cantidad" component={TextField} />
                 <Field label="Contratista" type="text" name="contratista" component={TextField} />
@@ -30,8 +31,18 @@ class FormBaja extends React.Component{
                 <h2 className="ui dividing header">Llenado para retiro de material</h2>
                 <form onSubmit={this.props.handleSubmit(this.props.onFormBajaSubmit)} className="ui form">
                     {this.renderFields()}
-                    <Link className="ui button left floated labeled icon" to="/" style={{marginTop:"15px"}}><i className="angle left icon"></i>Regresar</Link>
-                    <button className="ui button right floated green labeled icon" style={{marginTop:"15px"}} type="submit"><i className="angle right icon"></i>Siguiente</button>
+                    <Link 
+                        className="ui button left floated labeled icon" 
+                        to="/" 
+                        style={{marginTop:"15px"}}>
+                            <i className="angle left icon"></i>Regresar
+                    </Link>
+                    <button 
+                        className="ui button right floated green labeled icon" 
+                        style={{marginTop:"15px"}} 
+                        type="submit"
+                    ><i className="angle right icon"></i>Siguiente
+                    </button>
                 </form>
             </div>
         )
@@ -43,6 +54,10 @@ function validate(values){
 
     if(!values.codigo){
         errors.codigo = "Debes de ingresar un modelo"
+    }
+
+    if(!values.numeroDeCotizacion){
+        errors.numeroDeCotizacion = "Debes seleccionar un número de cotización"
     }
 
     if(!values.cantidad){

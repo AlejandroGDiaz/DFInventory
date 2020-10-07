@@ -12,6 +12,9 @@ const FormBajaReview = ({onCancel, bajaValues, removeMaterial, history }) =>{
                     <label style={{marginBottom:"20px"}}>Modelo:</label> {bajaValues.codigo}
                 </div>
                 <div className="field" style={{fontSize:"20px"}}>
+                    <label style={{marginBottom:"20px"}}>Numero de Cotización:</label> {bajaValues.numeroDeCotizacion}
+                </div>
+                <div className="field" style={{fontSize:"20px"}}>
                     <label style={{marginBottom:"20px"}}>Sucursal:</label> {bajaValues.sucursal}
                 </div>
                 <div className="field" style={{fontSize:"20px"}}>
@@ -30,8 +33,19 @@ const FormBajaReview = ({onCancel, bajaValues, removeMaterial, history }) =>{
                     <label style={{marginBottom:"20px"}}>Obra:</label> {bajaValues.obra}
                 </div>
             </div>
-            <button className="ui button left floated labeled icon" style={{marginTop:"15px"}} onClick={onCancel}><i className="angle left icon"></i>Regresar</button>
-            <button className="ui button right floated red" style={{marginTop:"15px"}} onClick={()=>removeMaterial(bajaValues, history)}>Confirmar</button>
+            <button 
+                className="ui button left floated labeled icon" 
+                style={{marginTop:"15px"}} 
+                onClick={onCancel}
+                >
+                    <i className="angle left icon"></i>Regresar
+            </button>
+            <button 
+                className="ui button right floated red" 
+                style={{marginTop:"15px"}} 
+                onClick={()=>removeMaterial(bajaValues, history)}
+                >Confirmar
+            </button>
         </div>
     )
 }

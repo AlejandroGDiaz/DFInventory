@@ -6,6 +6,9 @@ import removeReducer from "./removeReducer";
 import fetchRegisterReducer from "./fetchRegisterReducer";
 import fetchInventoryReducer from "./fetchInventoryReducer";
 import fetchCodeReducer from "./fetchCodeReducer";
+import addOrderReducer from "./addOrderReducer";
+import fetchOrderReducer from "./fetchOrderReducer"
+import fetchTotalesReducer from "./fetchTotalesReducer"
 
 export default combineReducers({
     product: productReducer,
@@ -14,5 +17,8 @@ export default combineReducers({
     register: fetchRegisterReducer,
     inventory: fetchInventoryReducer,
     codes: fetchCodeReducer,
+    addOrder: addOrderReducer,
+    order: fetchOrderReducer,
+    total: fetchTotalesReducer,
     form: reduxForm
 })

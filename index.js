@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 require("./routes/productsRoutes")(app);
 require("./routes/registerRoutes")(app);
 require("./routes/inventoryRoutes")(app);
+require("./routes/orderRoutes")(app);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));

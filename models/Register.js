@@ -3,6 +3,7 @@ const { Schema } = require("mongoose");
 
 const registerSchema = new Schema ({
     codigo: String,
+    numeroDeCotizacion: String,
     sucursal: String,
     cantidad: Number,
     contratista: String,

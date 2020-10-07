@@ -4,7 +4,10 @@ import { FETCH_PRODUCT,
          REMOVE_MATERIAL, 
          FETCH_REGISTER, 
          FETCH_INVENTORY,
-        FETCH_CODES } from "./types";
+        FETCH_CODES,
+        ADD_ORDER,
+        FETCH_ORDER,
+        FETCH_TOTALES } from "./types";
 
 export const fetchCodes = () => async (dispatch) => {
         const res = await axios.get("/api/productos")
@@ -62,4 +65,29 @@ export const fetchInventory = (values) => async (dispatch) => {
         const res = await axios.post("/api/inventario", values)
 
         dispatch({type: FETCH_INVENTORY, payload: res.data})
+}
+
+export const addOrder = (values, history) => async (dispatch) => {
+        const res = await axios.post("/api/order/new", values)
+
+         if(res.data===""){
+           history.push("/failure")     
+        }else{
+           history.push("/success") 
+        }
+
+        dispatch({type:ADD_ORDER, payload: res.data})
+}
+
+export const fetchOrder = (values) => async (dispatch) => {
+
+        const res = await axios.post("/api/order/search", values)
+
+        dispatch({type: FETCH_ORDER, payload: res.data})
+}
+
+export const fetchTotales = () => async (dispatch) => {
+        const res = await axios.get("/api/order/total")
+
+        dispatch({type: FETCH_TOTALES, payload: res.data})
 }

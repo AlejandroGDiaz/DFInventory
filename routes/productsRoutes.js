@@ -4,6 +4,7 @@ const moment = require("moment");
 
 const Product = require("../models/Product");
 const Register = require("../models/Register");
+const Order = require("../models/Order");
 
 module.exports = app => {
 
@@ -49,60 +50,76 @@ module.exports = app => {
 
     app.post("/api/product/baja", async (req, res) => {
 
-        let {codigo, sucursal, cantidad, contratista, responsable, responsableDF, obra} = req.body;
+        let {codigo, numeroDeCotizacion, sucursal, cantidad, contratista, responsable, responsableDF, obra} = req.body;
 
         try{
-            if(sucursal == "Mexicali"){
-                const result = await Product.findOneAndUpdate({codigo: _.toUpper(codigo)},
-                {
-                    $inc:{
-                        cantidadMXLI: -parseInt(cantidad)
-                    }});
-                if(result){
-                    const register = new Register({
-                        codigo: _.toUpper(codigo),
-                        sucursal: _.toUpper(sucursal),
-                        cantidad: parseInt(cantidad),
-                        contratista: _.toUpper(contratista),
-                        responsable: _.toUpper(responsable),
-                        responsableDF: _.toUpper(responsableDF),
-                        obra: _.toUpper(obra),
-                        fecha: moment().format("DD/MM/YYYY")
+            const orden = await Order.findOne({numeroDeCotizacion, articulos:{$elemMatch:{codigo}}}, "articulos")
+            if(orden){
+                orden.articulos.map(articulo => {
+                    if(articulo.codigo==codigo){
+                        articulo.cantidadEntregada += parseInt(cantidad)
+                        articulo.cantidadFaltante -= parseInt(cantidad)
+                    }
+                })
+                orden.save()
 
-                    })
-                    register.save();
-                    res.send(result);  
+                if(sucursal == "Mexicali"){
+                    const result = await Product.findOneAndUpdate({codigo: _.toUpper(codigo)},
+                    {
+                        $inc:{
+                            cantidadMXLI: -parseInt(cantidad)
+                        }});
+                    if(result){
+                        const register = new Register({
+                            codigo: _.toUpper(codigo),
+                            sucursal: _.toUpper(sucursal),
+                            cantidad: parseInt(cantidad),
+                            contratista: _.toUpper(contratista),
+                            responsable: _.toUpper(responsable),
+                            responsableDF: _.toUpper(responsableDF),
+                            obra: _.toUpper(obra),
+                            fecha: moment().format("DD/MM/YYYY")
+    
+                        })
+                        register.save();
+                        res.send(result);  
+                    }
+                    else{
+                        res.send("");
+                    }
+                
                 }
-                else{
-                    res.send("");
+                else if(sucursal == "Queretaro"){
+                    const result = await Product.findOneAndUpdate({codigo: _.toUpper(codigo)},
+                    {
+                        $inc:{
+                            cantidadQRO: -parseInt(cantidad)
+                        }});
+                    if(result){
+                        const register = new Register({
+                            codigo: _.toUpper(codigo),
+                            sucursal: _.toUpper(sucursal),
+                            cantidad: parseInt(cantidad),
+                            contratista: _.toUpper(contratista),
+                            responsable: _.toUpper(responsable),
+                            responsableDF: _.toUpper(responsableDF),
+                            obra: _.toUpper(obra),
+                            fecha: moment().format("DD/MM/YYYY")
+    
+                        })
+                        register.save();
+                        res.send(result);  
+                    }
+                    else{
+                        res.send("");
+                    }
                 }
+
+            }
+            else{
+                res.status(404).send("");
+            }
             
-            }
-            else if(sucursal == "Queretaro"){
-                const result = await Product.findOneAndUpdate({codigo: _.toUpper(codigo)},
-                {
-                    $inc:{
-                        cantidadQRO: -parseInt(cantidad)
-                    }});
-                if(result){
-                    const register = new Register({
-                        codigo: _.toUpper(codigo),
-                        sucursal: _.toUpper(sucursal),
-                        cantidad: parseInt(cantidad),
-                        contratista: _.toUpper(contratista),
-                        responsable: _.toUpper(responsable),
-                        responsableDF: _.toUpper(responsableDF),
-                        obra: _.toUpper(obra),
-                        fecha: moment().format("DD/MM/YYYY")
-
-                    })
-                    register.save();
-                    res.send(result);  
-                }
-                else{
-                    res.send("");
-                }
-            }
         }
         catch{
             res.send("");

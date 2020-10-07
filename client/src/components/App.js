@@ -8,6 +8,9 @@ import Alta from "./Alta"
 import Baja from "./Baja"
 import Register from "./Register";
 import Inventario from "./Inventario";
+import Orden from "./Orden";
+import OrdenStatus from "./OrdenStatus";
+import CantidaddesTotales from "./CantidadesTotales";
 import Success from "./confirmation/Success";
 import Failure from "./confirmation/Failure";
 
@@ -24,6 +27,9 @@ const App = () => {
                     <Route exact path="/baja" component={Baja}/>
                     <Route exact path="/register" component={Register}/>
                     <Route exact path="/inventario" component={Inventario}/>
+                    <Route exact path="/orden" component={Orden}/>
+                    <Route exact path="/ordenstatus" component={OrdenStatus}/>
+                    <Route exact path="/cantidades" component={CantidaddesTotales}/>
                     <Route exact path="/success" component={Success}/>
                     <Route exact path="/failure" component={Failure}/>
                 </div>

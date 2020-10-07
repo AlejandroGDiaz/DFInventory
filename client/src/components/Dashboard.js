@@ -25,11 +25,12 @@ const Dashboard = () => {
             <Card 
                 title="Dar de baja material"
                 description="Aparecerá un formulario para poder sacar material del sistema. Solicitará
-                el modelo del producto, la sucursal, la cantidad a retirar, el nombre del contratista, la persona responsable
+                el modelo del producto, el número de cotización perteneciente a la orden de compra
+                la sucursal, la cantidad a retirar, el nombre del contratista, la persona responsable
                 que se llevó el material a nombre del contratista, el responsable de Digital Fire
                 que entregó el material y la obra a la que fue destinada. En caso de ser llenado correctamente, 
                 se actualizará la cantidad del producto y se creará un Registro del material que salió de la 
-                sucursal."
+                sucursal. Antes de poder dar de baja material, se tiene que llenar una orden de compra."
                 route="/baja"
                 button="Dar de baja"
             />
@@ -48,6 +49,30 @@ const Dashboard = () => {
                 en stock de dicha sucursal. Se tendrá la opción de poder descargar el archivo tanto en PDF como Excel."
                 route="/inventario"
                 button="Buscar"
+            />
+            <Card 
+                title="Registro de Orden de compra"
+                description="Se procederá al llenado de una Orden de Compra. En ella se llenarán los requisitos correspondientes
+                tales como: El número de cotización, la obra, cliente o contratista, y los artículos pertenecientes a la orden así
+                como su cantidad. Es importante recalcar que se tiene que llenar una orden de compra antes de poder dar de baja material."
+                route="/orden"
+                button="Siguiente"
+            />
+            <Card 
+                title="Estado de Orden de compra"
+                description="Aparecerá un formulario donde se pedirá el número de cotización de una orden de compra. En caso de 
+                existir, se podrá ver el estado de esta en cuanto, como lo es la cantidad faltante que se necesita de cada material
+                revisanto su existencia en las diferentes sucursales."
+                route="/ordenstatus"
+                button="Siguiente"
+            />
+            <Card 
+                title="Total de cantidades faltantes"
+                description="Aparecerá una tabla con las cantidades faltantes acumuladas de todas las órdenes de compra, junto con las
+                cantidades que existen actualmente en las respectivas sucursales. Puede ser de ayuda para saber cuánto material encargar
+                en caso de ser necesario."
+                route="/cantidades"
+                button="Siguiente"
             />
         </div>
         
