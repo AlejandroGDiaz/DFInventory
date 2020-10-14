@@ -16,6 +16,17 @@ module.exports = app => {
                 res.send("")
             }
             else{
+
+               let validateArticulosFlag = false 
+               for(var i=0; i<articulos.length; i++){
+                    const product = await Product.findOne({codigo:articulos[i].codigo})
+                    if(!product){
+                        validateArticulosFlag = true
+                        break
+                    }
+               }
+
+               if(!validateArticulosFlag){
                const order = new Order({
                 numeroDeCotizacion: _.toUpper(numeroDeCotizacion),
                 obra: _.toUpper(obra),
@@ -36,7 +47,13 @@ module.exports = app => {
                         return
                     }
                 })
-                res.send(order) 
+                res.send(order)
+            }
+            else{
+                res.send("");
+            } 
+
+
             }
         }
         catch{

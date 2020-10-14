@@ -12,6 +12,7 @@ const Failure = () => {
                     <li>El modelo no se encontró al momento de dar de alta el material</li>
                     <li>El modelo no se encontró al momento de dar de baja el material</li>
                     <li>El número de cotización no existe o no ha sido dada de alta la oden de compra</li>
+                    <li>Algún modelo no está dado de alta en la orden de compra ingresada</li>
                 </ol>
             </p>
         </div>
