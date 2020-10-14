@@ -15,6 +15,7 @@ class RegisterView extends React.Component{
                 <tr key={register._id}>
                     <td>{register.fecha}</td>
                     <td>{register.codigo}</td>
+                    <td>{register.numeroDeCotizacion}</td>
                     <td>{register.sucursal}</td>
                     <td>{register.cantidad}</td>
                     <td>{register.contratista}</td>
@@ -34,6 +35,7 @@ class RegisterView extends React.Component{
                         <tr>
                             <th>Fecha</th>
                             <th>Producto</th>
+                            <th>Número de cotización</th>
                             <th>Sucursal</th>
                             <th>Cantidad</th>
                             <th>Contratista</th>

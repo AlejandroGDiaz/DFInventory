@@ -20,12 +20,20 @@ module.exports = app => {
     })
 
     app.post("/api/product", async (req, res) =>{
-        const {codigo} = req.body;
+        try{
+          const {codigo} = req.body;
 
-        const product = await Product.findOne({codigo: _.toUpper(codigo)})
+          const product = await Product.findOne({codigo: _.toUpper(codigo)}).populate({
+            path: "orden_details",
+            select: "numeroDeCotizacion",
+            match:{completada:false}
+          })
 
-        res.send(product);
-
+          res.send(product);  
+        }
+        catch{
+            res.send("")
+        }
     });
 
     app.post("/api/product/alta", (req, res) => {
@@ -55,12 +63,25 @@ module.exports = app => {
         try{
             const orden = await Order.findOne({numeroDeCotizacion, articulos:{$elemMatch:{codigo}}}, "articulos")
             if(orden){
+
+                let cantidadDeFaltantes = 0;
                 orden.articulos.map(articulo => {
                     if(articulo.codigo==codigo){
                         articulo.cantidadEntregada += parseInt(cantidad)
                         articulo.cantidadFaltante -= parseInt(cantidad)
                     }
                 })
+
+                orden.articulos.map(articulo => {
+                    if(articulo.cantidadFaltante == 0){
+                        cantidadDeFaltantes++
+                    }
+                })
+
+                if(cantidadDeFaltantes == orden.articulos.length){
+                    orden.completada = true
+                }
+
                 orden.save()
 
                 if(sucursal == "Mexicali"){

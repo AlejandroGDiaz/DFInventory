@@ -7,6 +7,10 @@ const orderSchema = new Schema ({
     contratista: String,
     responsableDF: String,
     fecha: String,
+    completada:{
+        type: Boolean,
+        default: false
+    },
     articulos:[{
         codigo:{
             type:String

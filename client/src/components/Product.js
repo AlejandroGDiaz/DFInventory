@@ -12,7 +12,7 @@ class Product extends React.Component{
 
     renderOrdendes(){
         if(this.props.product.ordenes){
-        let arrayOrdenes = new Array(this.props.product.ordenes)
+        let arrayOrdenes = new Array(this.props.product.orden_details)
         return (
             arrayOrdenes[0].map((orden, index) => {
                 return <div key={index}>
@@ -49,7 +49,7 @@ class Product extends React.Component{
                     <br/>
                     <div className="description">
                         <p style={{fontSize:"18px", textAlign:"left"}}>
-                            <b>Órdenes de compra:</b>
+                            <b>Órdenes de compra activas:</b>
                         </p>
                         {this.renderOrdendes()}
                     </div>

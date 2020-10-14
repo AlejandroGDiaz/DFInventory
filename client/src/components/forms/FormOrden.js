@@ -9,9 +9,17 @@ import CodigoDataList from "../CodigoDataList";
 
 class FormOrden extends React.Component{
 
+    
     renderArticulos({fields, meta:{error}}){
+
+        const handlePlusKeyPress = (e) => {
+            if(e.key === "Shift"){
+                fields.push()
+            }
+        }
+
         return(
-            <div>
+            <div onKeyDown={(e) => handlePlusKeyPress(e)}>
                 <div style={{textAlign:"center"}}>
                     <button 
                         type="button" 
