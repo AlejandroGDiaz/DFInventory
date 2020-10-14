@@ -7,6 +7,7 @@ export default ({input, label, meta:{error, touched}}) => {
             <select {...input} className = "ui selection dropdown">
                 <option value=""></option>
                 <option value="codigo">Modelo</option>
+                <option value="numeroDeCotizacion">Número de Cotización</option>
                 <option value="sucursal">Sucursal</option>
                 <option value="contratista">Contratista</option>
                 <option value="responsable">Responsable</option>

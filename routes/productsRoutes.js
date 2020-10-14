@@ -72,6 +72,7 @@ module.exports = app => {
                     if(result){
                         const register = new Register({
                             codigo: _.toUpper(codigo),
+                            numeroDeCotizacion,
                             sucursal: _.toUpper(sucursal),
                             cantidad: parseInt(cantidad),
                             contratista: _.toUpper(contratista),
@@ -98,6 +99,7 @@ module.exports = app => {
                     if(result){
                         const register = new Register({
                             codigo: _.toUpper(codigo),
+                            numeroDeCotizacion,
                             sucursal: _.toUpper(sucursal),
                             cantidad: parseInt(cantidad),
                             contratista: _.toUpper(contratista),

@@ -101,8 +101,10 @@ module.exports = app => {
                     response.push(temp)
                 }
             })
+
+            const filteredResponse = response.filter(articulo => articulo.cantidadFaltante>0)
             
-            res.send(response)
+            res.send(filteredResponse)
         }
         catch{
             res.send("")

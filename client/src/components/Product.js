@@ -10,6 +10,20 @@ class Product extends React.Component{
         
     };
 
+    renderOrdendes(){
+        if(this.props.product.ordenes){
+        let arrayOrdenes = new Array(this.props.product.ordenes)
+        return (
+            arrayOrdenes[0].map((orden, index) => {
+                return <div key={index}>
+                    <p style={{fontSize:"18px", textAlign:"left"}}>{orden.numeroDeCotizacion}</p>
+                </div>
+            })
+        )} else{
+            return <div>Cargando</div>
+        }
+    }
+
     renderProduct(){
         const {codigo, descripcion, cantidadMXLI, cantidadQRO} = this.props.product;
         return(
@@ -32,6 +46,13 @@ class Product extends React.Component{
                             <b>Cantidad en Querétaro:</b> {cantidadQRO}
                         </p>
                     </div>
+                    <br/>
+                    <div className="description">
+                        <p style={{fontSize:"18px", textAlign:"left"}}>
+                            <b>Órdenes de compra:</b>
+                        </p>
+                        {this.renderOrdendes()}
+                    </div>
                 </div>
             </div>
         );
@@ -40,10 +61,13 @@ class Product extends React.Component{
     render(){
         return(
             <div style={{textAlign:"center"}}>
-
-                {this.renderProduct()}
-
-                <Link className="ui centered button" to="/producto">Regresar</Link>
+                <Link 
+                    className="ui centered button" 
+                    to="/producto"
+                    style={{marginTop:"15px"}} 
+                >Regresar
+                </Link>
+                {this.renderProduct()}                
             </div>
                
         );
