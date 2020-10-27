@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import {connect} from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as actions from "../../actions";
 
 const FormOrdenReview = ({onCancel, orderValues, addOrder, history}) => {
+
+    const [disabled, setDisable] = useState(false);
 
     const hasDuplicates = () => {
         let valuesSoFar = Object.create(null);
@@ -18,8 +20,13 @@ const FormOrdenReview = ({onCancel, orderValues, addOrder, history}) => {
     }
 
     const sendValues = () => {
+        if(disabled){
+            
+            return;
+        }
+        setDisable(true)
         if(hasDuplicates()){
-            return onCancel
+            return onCancel()
         }
         else{
             return addOrder(orderValues, history)
@@ -103,8 +110,9 @@ const FormOrdenReview = ({onCancel, orderValues, addOrder, history}) => {
                 <button 
                     className="ui button right floated red" 
                     style={{marginTop:"15px"}} 
-                    onClick={()=>sendValues()}
-                 >Confirmar
+                    onClick={sendValues}
+                    disabled={disabled}
+                 >{disabled?"Enviando...": "Confirmar"}
                 </button>
             </div>
         )

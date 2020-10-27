@@ -1,9 +1,12 @@
-import React from "react";
+import React,{useState} from "react";
 import {connect} from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as actions from "../../actions";
 
 const FormAltaReview = ({onCancel, altaValues, addMaterial, history}) => {
+
+    const [disabled, setDisabled] = useState(false);
+
     return(
         <div className="ui container" style={{marginTop:"20px"}}>
             <h2 className="ui dividing header">Favor de confirmar que los datos sean correctos</h2>
@@ -18,8 +21,25 @@ const FormAltaReview = ({onCancel, altaValues, addMaterial, history}) => {
                     <label style={{marginBottom:"20px"}}>Cantidad:</label> {altaValues.cantidad}
                 </div>
             </div>
-            <button className="ui button left floated labeled icon" style={{marginTop:"15px"}} onClick={onCancel}><i className="angle left icon"></i>Regresar</button>
-            <button className="ui button right floated red" style={{marginTop:"15px"}} onClick={()=>addMaterial(altaValues, history)}>Confirmar</button>
+            <button 
+                className="ui button left floated labeled icon" 
+                style={{marginTop:"15px"}} onClick={onCancel}>
+                    <i className="angle left icon"></i>
+                    Regresar
+            </button>
+            <button 
+                className="ui button right floated red" 
+                style={{marginTop:"15px"}}
+                disabled={disabled} 
+                onClick={()=>{
+                    if(disabled){
+                        return;
+                    }
+                    setDisabled(true)
+                    addMaterial(altaValues, history)
+                }}
+            >{disabled?"Enviando...": "Confirmar"}
+            </button>
             
         </div>
     )

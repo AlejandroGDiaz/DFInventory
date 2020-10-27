@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import {connect} from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as actions from "../../actions";
 
 const FormBajaReview = ({onCancel, bajaValues, removeMaterial, history }) =>{
+
+    const [disabled, setDisabled] = useState(false);
+
     return(
         <div className="ui container" style={{marginTop:"20px"}}>
             <h2 className="ui dividing header">Favor de confirmar que los datos sean correctos</h2>
@@ -42,9 +45,16 @@ const FormBajaReview = ({onCancel, bajaValues, removeMaterial, history }) =>{
             </button>
             <button 
                 className="ui button right floated red" 
-                style={{marginTop:"15px"}} 
-                onClick={()=>removeMaterial(bajaValues, history)}
-                >Confirmar
+                style={{marginTop:"15px"}}
+                disabled={disabled} 
+                onClick={()=>{
+                    if(disabled){
+                        return;
+                    }
+                    setDisabled(true)
+                    removeMaterial(bajaValues, history)
+                }}
+                >{disabled?"Enviando...": "Confirmar"}
             </button>
         </div>
     )
