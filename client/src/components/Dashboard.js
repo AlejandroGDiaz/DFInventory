@@ -74,6 +74,12 @@ const Dashboard = () => {
                 route="/cantidades"
                 button="Siguiente"
             />
+            <Card 
+                title="Órdenes de compra activas"
+                description="Aparecerá una tabla con las órdenes de compra que falten por realizarse"
+                route="/ordenesactivas"
+                button="Siguiente"
+            />
         </div>
         
     );

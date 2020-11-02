@@ -9,6 +9,7 @@ import fetchCodeReducer from "./fetchCodeReducer";
 import addOrderReducer from "./addOrderReducer";
 import fetchOrderReducer from "./fetchOrderReducer"
 import fetchTotalesReducer from "./fetchTotalesReducer"
+import fetchOrdenesActivasReducer from "./fetchOrdenesActivasReducer"
 
 export default combineReducers({
     product: productReducer,
@@ -20,5 +21,6 @@ export default combineReducers({
     addOrder: addOrderReducer,
     order: fetchOrderReducer,
     total: fetchTotalesReducer,
+    ordenesActivas: fetchOrdenesActivasReducer,
     form: reduxForm
 })

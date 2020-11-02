@@ -7,7 +7,8 @@ import { FETCH_PRODUCT,
         FETCH_CODES,
         ADD_ORDER,
         FETCH_ORDER,
-        FETCH_TOTALES } from "./types";
+        FETCH_TOTALES,
+        FETCH_ORDENES_ACTIVAS } from "./types";
 
 export const fetchCodes = () => async (dispatch) => {
         const res = await axios.get("/api/productos")
@@ -90,4 +91,10 @@ export const fetchTotales = () => async (dispatch) => {
         const res = await axios.get("/api/order/total")
 
         dispatch({type: FETCH_TOTALES, payload: res.data})
+}
+
+export const fetchOrdenesActivas = () => async (dispatch) => {
+        const res = await axios.get("/api/order/active")
+
+        dispatch({type: FETCH_ORDENES_ACTIVAS, payload: res.data})
 }

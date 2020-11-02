@@ -127,4 +127,14 @@ module.exports = app => {
             res.send("")
         }
     })
+
+    app.get("/api/order/active", async(req, res) => {
+        try{
+            const order = await Order.find({completada:false}, "numeroDeCotizacion obra fecha contratista responsableDF")
+            res.send(order)
+
+        }catch{
+            res.send("")
+        }
+    })
 }
