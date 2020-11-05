@@ -16,6 +16,7 @@ class OrdenStatus extends React.Component{
         return(
             <div>
                 {this.renderContent()}
+                {console.log(this.props)}
             </div>
         )
     }

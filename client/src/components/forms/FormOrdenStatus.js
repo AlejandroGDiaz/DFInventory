@@ -5,7 +5,7 @@ import TextField from "./TextField";
 
 class FormOrdenStatus extends React.Component{
     renderFields(){
-        return <Field label="Numero de cotización" name="numeroDeCotizacion" component={TextField} />
+        return <Field label="Numero de cotización" name="numeroDeCotizacion"  component={TextField} />
     }
     render(){
         return(
