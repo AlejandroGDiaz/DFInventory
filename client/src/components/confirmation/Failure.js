@@ -15,6 +15,8 @@ const Failure = () => {
                         <li>El modelo no se encontró al momento de dar de baja el material</li>
                         <li>El número de cotización no existe o no ha sido dada de alta la oden de compra</li>
                         <li>Algún modelo no está dado de alta en la orden de compra ingresada</li>
+                        <li>Existe una discrepancia entre la cantidad que se quiere dar de baja y la cantidad existente</li>
+                        <li>Existe una discrepancia entre la cantidad que falta por entregar y la cantidad que se quiere dar de baja</li>
                     </ol>
                 </p>
             </div>
