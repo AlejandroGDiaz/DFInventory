@@ -43,6 +43,7 @@ class OrdenStatusView extends React.Component{
                             <th>Obra</th>
                             <th>Contratista/Cliente</th>
                             <th>Responsable de Digital Fire</th>
+                            <th>Fecha</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,6 +51,7 @@ class OrdenStatusView extends React.Component{
                             <td>{this.props.order.obra}</td>
                             <td>{this.props.order.contratista}</td>
                             <td>{this.props.order.responsableDF}</td>
+                            <td>{this.props.order.fecha}</td>
                         </tr>
                     </tbody>
                 </table>

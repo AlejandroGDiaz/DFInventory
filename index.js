@@ -13,6 +13,7 @@ require("./routes/productsRoutes")(app);
 require("./routes/registerRoutes")(app);
 require("./routes/inventoryRoutes")(app);
 require("./routes/orderRoutes")(app);
+require("./routes/productsAdminRoutes")(app);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));

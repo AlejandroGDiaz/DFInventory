@@ -14,6 +14,8 @@ import CantidaddesTotales from "./CantidadesTotales";
 import OrdenesActivas from "./OrdenesActivas";
 import Success from "./confirmation/Success";
 import Failure from "./confirmation/Failure";
+import DashboardAdmin from "./admin/DashboardAdmin";
+import NuevoProducto from "./admin/NuevoProducto";
 
 const App = () => {
 
@@ -32,6 +34,8 @@ const App = () => {
                     <Route exact path="/ordenstatus" component={OrdenStatus}/>
                     <Route exact path="/cantidades" component={CantidaddesTotales}/>
                     <Route exact path="/ordenesactivas" component={OrdenesActivas}/>
+                    <Route exact path="/admin" component={DashboardAdmin}/>
+                    <Route exact path="/admin/nuevoproducto" component={NuevoProducto}/>
                     <Route exact path="/success" component={Success}/>
                     <Route exact path="/failure" component={Failure}/>
                 </div>
