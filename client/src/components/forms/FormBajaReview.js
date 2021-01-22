@@ -17,9 +17,7 @@ const FormBajaReview = ({onCancel, bajaValues, removeMaterial, history }) =>{
                 <div className="field" style={{fontSize:"20px"}}>
                     <label style={{marginBottom:"20px"}}>Numero de Cotización:</label> {bajaValues.numeroDeCotizacion}
                 </div>
-                <div className="field" style={{fontSize:"20px"}}>
-                    <label style={{marginBottom:"20px"}}>Sucursal:</label> {bajaValues.sucursal}
-                </div>
+                
                 <div className="field" style={{fontSize:"20px"}}>
                     <label style={{marginBottom:"20px"}}>Cantidad:</label> {bajaValues.cantidad}
                 </div>
@@ -29,9 +27,7 @@ const FormBajaReview = ({onCancel, bajaValues, removeMaterial, history }) =>{
                 <div className="field" style={{fontSize:"20px"}}>
                     <label style={{marginBottom:"20px"}}>Responsable:</label> {bajaValues.responsable}
                 </div>
-                <div className="field" style={{fontSize:"20px"}}>
-                    <label style={{marginBottom:"20px"}}>Responsable de Digital Fire:</label> {bajaValues.responsableDF}
-                </div>
+                
                 <div className="field" style={{fontSize:"20px"}}>
                     <label style={{marginBottom:"20px"}}>Obra:</label> {bajaValues.obra}
                 </div>

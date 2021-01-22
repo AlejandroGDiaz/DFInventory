@@ -1,8 +1,8 @@
 import React from "react";
 import {reduxForm, Field} from "redux-form";
 import {Link} from "react-router-dom";
+
 import TextField from "./TextField";
-import OptionsField from "./OptionsField";
 import CodigoDataList from "../CodigoDataList";
 
 
@@ -13,7 +13,7 @@ class FormAlta extends React.Component{
             <div>
                 <Field label="Modelo" type="text" name="codigo" component={TextField} list="codigo"/>
                 <CodigoDataList id="codigo"/>
-                <Field label="Sucursal" name="sucursal" component={OptionsField}/>
+                
                 <Field label="Cantidad" type="text" name="cantidad" component={TextField} />
             </div>
         )
@@ -59,10 +59,6 @@ function validate(values){
         errors.cantidad = "El valor debe ser un número"
     }else if(Number(values.cantidad) <=0){
         errors.cantidad = "La cantidad debe ser mayor a 0"
-    }
-
-    if(!values.sucursal){
-        errors.sucursal = "Debes seleccionar una sucursal"
     }
 
 

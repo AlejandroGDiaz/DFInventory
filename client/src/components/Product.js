@@ -52,6 +52,7 @@ class Product extends React.Component{
                             <b>Órdenes de compra activas:</b>
                         </p>
                         {this.renderOrdendes()}
+                        
                     </div>
                 </div>
             </div>

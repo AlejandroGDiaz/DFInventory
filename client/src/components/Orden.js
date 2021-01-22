@@ -1,7 +1,10 @@
 import React from "react";
-import {reduxForm} from "redux-form"
+import {reduxForm} from "redux-form";
+import {connect} from "react-redux";
+
 import FormOrden from "./forms/FormOrden";
 import FormOrdenReview from "./forms/FormOrdenReview";
+import Restricted from "./auth/Restricted";
 
 class Orden extends React.Component{
 
@@ -15,14 +18,25 @@ class Orden extends React.Component{
     }
 
     render(){
-        return(
-            <div>
-                {this.renderContent()}
-            </div>
-        )
+        if(this.props.user.permisos.includes("admin")||this.props.user.permisos.includes("altaOrden")){
+            return(
+                <div>
+                    {this.renderContent()}
+                </div>
+            )
+        }
+        else{
+            return <Restricted/>
+        }
+    }
+}
+
+function mapStateToProps(state){
+    return{
+        user: state.user
     }
 }
 
 export default reduxForm({
     form: "formOrden"
-})(Orden);
+})(connect(mapStateToProps, null)(Orden));

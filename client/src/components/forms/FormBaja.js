@@ -2,7 +2,7 @@ import React from "react";
 import {reduxForm, Field} from "redux-form";
 import {Link} from "react-router-dom";
 import TextField from "./TextField";
-import OptionsField from "./OptionsField";
+//import OptionsField from "./OptionsField";
 import CodigoDataList from "../CodigoDataList";
 
 
@@ -14,11 +14,11 @@ class FormBaja extends React.Component{
                 <Field label="Modelo" type="text" name="codigo" component={TextField} list="codigo"/>
                 <CodigoDataList id="codigo"/>
                 <Field label="Número de cotización" name="numeroDeCotizacion" component={TextField}/>
-                <Field label="Sucursal" name="sucursal" component={OptionsField}/>
+                
                 <Field label="Cantidad" type="text" name="cantidad" component={TextField} />
                 <Field label="Contratista" type="text" name="contratista" component={TextField} />
                 <Field label="Responsable" type="text" name="responsable" component={TextField} />
-                <Field label="Responsable de Digital Fire" type="text" name="responsableDF" component={TextField} />
+                
                 <Field label="Obra" type="text" name="obra" component={TextField} />
             </div>
         )
@@ -68,9 +68,6 @@ function validate(values){
         errors.cantidad = "La cantidad debe ser mayor a 0"
     }
 
-    if(!values.sucursal){
-        errors.sucursal = "Debes seleccionar una sucursal"
-    }
 
     if(!values.contratista){
         errors.contratista = "Debes ingresar un contratista"
@@ -80,9 +77,6 @@ function validate(values){
         errors.responsable = "Debes ingresar un responsable"
     }
 
-    if(!values.responsableDF){
-        errors.responsableDF = "Debes ingresar un responsable de Digital Fire"
-    }
 
     if(!values.obra){
         errors.obra = "Debes ingresar una obra"

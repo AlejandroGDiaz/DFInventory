@@ -1,14 +1,18 @@
 import axios from "axios";
-import { FETCH_PRODUCT, 
+import { 
+        FETCH_PRODUCT, 
         ADD_MATERIAL,
-         REMOVE_MATERIAL, 
-         FETCH_REGISTER, 
-         FETCH_INVENTORY,
+        REMOVE_MATERIAL, 
+        FETCH_REGISTER, 
+        FETCH_INVENTORY,
         FETCH_CODES,
         ADD_ORDER,
         FETCH_ORDER,
         FETCH_TOTALES,
-        FETCH_ORDENES_ACTIVAS } from "./types";
+        FETCH_ORDENES_ACTIVAS,
+        LOG_IN,
+        LOG_OUT, 
+        CURRENT_USER} from "./types";
 
 export const fetchCodes = () => async (dispatch) => {
         const res = await axios.get("/api/productos")
@@ -97,4 +101,30 @@ export const fetchOrdenesActivas = () => async (dispatch) => {
         const res = await axios.get("/api/order/active")
 
         dispatch({type: FETCH_ORDENES_ACTIVAS, payload: res.data})
+}
+
+// ************************************  auth  ******************************** //
+
+export const logIn = (values, history) => async (dispatch) => {
+        const res = await axios.post("/api/login", values)
+
+        if(res.data === ""){
+                history.go(0)
+        }
+
+        dispatch({type: LOG_IN, payload: res.data})
+        history.go(0)
+}
+
+export const logOut = (history) => async (dispatch) => {
+        const res = await axios.get("/api/logout")
+
+        dispatch({type: LOG_OUT, payload: res.data})
+        history.go(0)
+}
+
+export const currentUser = () => async (dispatch) => {
+        const res = await axios.get("/api/current_user")
+
+        dispatch({type: CURRENT_USER, payload: res.data})
 }

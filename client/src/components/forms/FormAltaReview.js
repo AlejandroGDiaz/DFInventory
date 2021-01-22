@@ -15,9 +15,6 @@ const FormAltaReview = ({onCancel, altaValues, addMaterial, history}) => {
                     <label style={{marginBottom:"20px"}}>Modelo:</label> {altaValues.codigo}
                 </div>
                 <div className="field" style={{fontSize:"20px"}}>
-                    <label style={{marginBottom:"20px"}}>Sucursal:</label> {altaValues.sucursal}
-                </div>
-                <div className="field" style={{fontSize:"20px"}}>
                     <label style={{marginBottom:"20px"}}>Cantidad:</label> {altaValues.cantidad}
                 </div>
             </div>

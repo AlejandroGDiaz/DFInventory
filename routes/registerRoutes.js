@@ -3,9 +3,11 @@ const _ = require("lodash");
 
 const Register = require("../models/Register");
 
+const checkLogin = require("../middleware/auth/checkLogin");
+
 module.exports = app => {
 
-    app.post("/api/register", async ( req, res) => {
+    app.post("/api/register", checkLogin, async ( req, res) => {
 
         try{
             let { criterio, valor} = req.body;

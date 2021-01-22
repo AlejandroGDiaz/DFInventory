@@ -1,7 +1,10 @@
 import React from "react";
-import {reduxForm} from "redux-form"
+import {reduxForm} from "redux-form";
+import {connect} from "react-redux";
+
 import FormAlta from "./forms/FormAlta";
 import FormAltaReview from "./forms/FormAltaReview";
+import Restricted from "./auth/Restricted";
 
 class Alta extends React.Component{
 
@@ -16,14 +19,26 @@ class Alta extends React.Component{
     }
 
     render(){
-        return(
-            <div>
-                {this.renderContent()}
-            </div>
-        )
+        if(this.props.user.permisos.includes("admin")||this.props.user.permisos.includes("altaMaterial")){
+            return(
+                <div>
+                    {this.renderContent()}
+                </div>
+            )
+        }
+        else{
+            return <Restricted/>
+        }
+        
+    }
+}
+
+function mapStateToProps(state){
+    return{
+        user: state.user
     }
 }
 
 export default reduxForm(
     {form:"formAlta"}
-)(Alta);
+)(connect(mapStateToProps, null)(Alta));

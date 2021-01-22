@@ -7,9 +7,11 @@ import fetchRegisterReducer from "./fetchRegisterReducer";
 import fetchInventoryReducer from "./fetchInventoryReducer";
 import fetchCodeReducer from "./fetchCodeReducer";
 import addOrderReducer from "./addOrderReducer";
-import fetchOrderReducer from "./fetchOrderReducer"
-import fetchTotalesReducer from "./fetchTotalesReducer"
-import fetchOrdenesActivasReducer from "./fetchOrdenesActivasReducer"
+import fetchOrderReducer from "./fetchOrderReducer";
+import fetchTotalesReducer from "./fetchTotalesReducer";
+import fetchOrdenesActivasReducer from "./fetchOrdenesActivasReducer";
+import userAuthReducer from "./userAuthReducer";
+import userReducer from "./userReducer";
 
 export default combineReducers({
     product: productReducer,
@@ -22,5 +24,7 @@ export default combineReducers({
     order: fetchOrderReducer,
     total: fetchTotalesReducer,
     ordenesActivas: fetchOrdenesActivasReducer,
+    userAuth: userAuthReducer,
+    user: userReducer,
     form: reduxForm
 })

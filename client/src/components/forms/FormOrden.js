@@ -82,7 +82,7 @@ class FormOrden extends React.Component{
                 <Field label="Numero de cotización" type="text" name="numeroDeCotizacion" component={TextField}/>
                 <Field label="Obra" type="text" name="obra" component={TextField}/>
                 <Field label="Contratista/Cliente" type="text" name="contratista" component={TextField}/>
-                <Field label="Responsable de Digital Fire" type="text" name="responsableDF" component={TextField}/>
+    
                 <FieldArray name="articulos" component={this.renderArticulos}/>
             </div>
         )
@@ -124,10 +124,6 @@ function validate(values){
 
     if(!values.contratista){
         errors.contratista = "Debes de ingresar un contratista o cliente"
-    }
-
-    if(!values.responsableDF){
-        errors.responsableDF = "Debes de ingresar un responsable de Digital Fire"
     }
 
     if(!values.articulos || !values.articulos.length){

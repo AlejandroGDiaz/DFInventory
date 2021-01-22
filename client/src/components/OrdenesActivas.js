@@ -4,6 +4,8 @@ import {Link} from "react-router-dom";
 
 import * as actions from "../actions";
 
+import Restricted from "./auth/Restricted";
+
 class OrdenesActivas extends React.Component{
 
     componentDidMount(){
@@ -46,24 +48,30 @@ class OrdenesActivas extends React.Component{
     }
 
     render(){
-        return(
-            <div className="ui container" style={{marginTop:"20px"}}>
-                <h2 className="ui dividing header">Órdenes de compra activas</h2>
-                <Link 
-                    className="ui button left floated labeled icon" 
-                    to="/" 
-                    style={{marginBottom:"15px"}}>
-                    <i className="angle left icon"></i>Regresar
-                </Link>
-                {this.renderContent()}
-            </div>
-        )
+        if(this.props.user.permisos.includes("admin")||this.props.user.permisos.includes("ordenesActivas")){
+            return(
+                <div className="ui container" style={{marginTop:"20px"}}>
+                    <h2 className="ui dividing header">Órdenes de compra activas</h2>
+                    <Link 
+                        className="ui button left floated labeled icon" 
+                        to="/" 
+                        style={{marginBottom:"15px"}}>
+                        <i className="angle left icon"></i>Regresar
+                    </Link>
+                    {this.renderContent()}
+                </div>
+            )
+        }else{
+            return <Restricted />
+        }
+        
     }
 }
 
 function mapStateToProps (state) {
     return({
-         ordenes: state.ordenesActivas
+         ordenes: state.ordenesActivas,
+         user: state.user
     })
 }
 export default connect(mapStateToProps, actions)(OrdenesActivas);

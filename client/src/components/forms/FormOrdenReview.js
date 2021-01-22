@@ -73,13 +73,7 @@ const FormOrdenReview = ({onCancel, orderValues, addOrder, history}) => {
                         </label> 
                         {orderValues.contratista}
                     </div>
-                    <div className="field" style={{fontSize:"20px"}}>
-                        <label 
-                            style={{marginBottom:"20px"}}
-                            >Responsable de Digital Fire:
-                        </label> 
-                        {orderValues.responsableDF}
-                    </div>
+                    
                     <div className="field" style={{fontSize:"20px"}}>
                         <label 
                             style={{marginBottom:"20px"}}

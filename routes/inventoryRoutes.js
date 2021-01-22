@@ -2,8 +2,10 @@ const mongoose = require("mongoose");
 
 const Product = require("../models/Product");
 
+const checkLogin = require("../middleware/auth/checkLogin");
+
 module.exports = app => {
-    app.post("/api/inventario", async (req, res) => {
+    app.post("/api/inventario", checkLogin, async (req, res) => {
         try{
             const { sucursal } = req.body;
 
