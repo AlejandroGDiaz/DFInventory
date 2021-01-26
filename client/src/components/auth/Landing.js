@@ -28,7 +28,7 @@ const Landing = ({handleSubmit, history, logIn}) => {
                     type="submit"
                     >
                         <i className="angle right icon"></i>
-                        Siguiente
+                        Ingresar
                 </button>
             </form>
         </div>

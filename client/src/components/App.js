@@ -24,7 +24,7 @@ const App = ({currentUser, user}) => {
 
     useEffect(() =>{
         currentUser()
-    })
+    },[currentUser])
 
     return(
         <div className="container"> 

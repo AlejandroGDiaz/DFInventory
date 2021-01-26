@@ -6,12 +6,12 @@ const Card = ({title, description, route, button}) => {
         <div className="card" style={{marginTop:"20px", marginLeft:"20px"}}>
             <div className="content">
                 <div className="header">{title}</div>
-            </div>       
-            <div className="content">
-                {description}
-            </div>      
+                <div className="description">
+                    {description}
+                </div>  
+            </div>           
             <div className="extra content">
-                <Link className="ui button" to={route}>{button}</Link>
+                <Link className="ui bottom attached button" to={route}>{button}</Link>
             </div>
         </div>
     );

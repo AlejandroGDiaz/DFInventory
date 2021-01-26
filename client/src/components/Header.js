@@ -8,16 +8,16 @@ const Header = ({user, logOut, history}) => {
     const renderSalir = () => {
         if(!user){
             return(
-                <div className="item">
-                    Hola extraño
+                <div className="header item" style={{color:"white"}}>
+                    Hola, extraño
                 </div>
             )
         }else{
             return(
-                <button className="ui button primary basic" onClick={() => {
+                <button className="ui inverted button" onClick={() => {
                     logOut(history)
                 }}>
-                    Hola {user.nombre}
+                    Hola, {user.nombre}
                     <br/>
                     Presione para salir
                 </button>
@@ -27,8 +27,8 @@ const Header = ({user, logOut, history}) => {
     }
 
     return(
-        <div className="ui menu">
-            <Link className="header item" to="/">
+        <div className="ui menu inverted segment" >
+            <Link className="header item" to="/" style={{color:"white"}}>
                 Digital Fire Industries
             </Link>
             <div className="right menu">

@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import * as actions from "../actions";
 import {Link} from "react-router-dom";
 
+import Loading from "./extras/Loading";
+
+
 class Product extends React.Component{
 
     componentDidMount(){
@@ -24,39 +27,44 @@ class Product extends React.Component{
         }
     }
 
+    
     renderProduct(){
-        const {codigo, descripcion, cantidadMXLI, cantidadQRO} = this.props.product;
-        return(
-            <div className="ui centered card" style={{marginTop:"20px"}}>
-                <div className="content">
-                    <h2 className="header">{codigo}</h2>
+        if(this.props.product){
+            const {codigo, descripcion, cantidadMXLI, cantidadQRO} = this.props.product;
+            return(
+                <div className="ui centered card" style={{marginTop:"20px"}}>
+                    <div className="content">
+                        <h2 className="header">{codigo}</h2>
+                    </div>
+                    <div className="content">
+                        <div className="description">
+                            <p style={{fontSize:"18px", textAlign:"left"}}>
+                                <b>Descripción:</b> {descripcion}
+                            </p>
+                        </div>
+                        <br/>
+                        <div className="description">
+                            <p style={{fontSize:"18px", textAlign:"left"}}>
+                                <b>Cantidad en Mexicali:</b> {cantidadMXLI}
+                            </p>
+                            <p style={{fontSize:"18px", textAlign:"left"}}>
+                                <b>Cantidad en Querétaro:</b> {cantidadQRO}
+                            </p>
+                        </div>
+                        <br/>
+                        <div className="description">
+                            <p style={{fontSize:"18px", textAlign:"left"}}>
+                                <b>Órdenes de compra activas:</b>
+                            </p>
+                            {this.renderOrdendes()}
+                            
+                        </div>
+                    </div>
                 </div>
-                <div className="content">
-                    <div className="description">
-                        <p style={{fontSize:"18px", textAlign:"left"}}>
-                            <b>Descripción:</b> {descripcion}
-                        </p>
-                    </div>
-                    <br/>
-                    <div className="description">
-                        <p style={{fontSize:"18px", textAlign:"left"}}>
-                            <b>Cantidad en Mexicali:</b> {cantidadMXLI}
-                        </p>
-                        <p style={{fontSize:"18px", textAlign:"left"}}>
-                            <b>Cantidad en Querétaro:</b> {cantidadQRO}
-                        </p>
-                    </div>
-                    <br/>
-                    <div className="description">
-                        <p style={{fontSize:"18px", textAlign:"left"}}>
-                            <b>Órdenes de compra activas:</b>
-                        </p>
-                        {this.renderOrdendes()}
-                        
-                    </div>
-                </div>
-            </div>
-        );
+            );
+        }else{
+            return <Loading />
+        }
     }
 
     render(){

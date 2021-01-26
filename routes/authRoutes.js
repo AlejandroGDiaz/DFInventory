@@ -19,7 +19,7 @@ module.exports = app => {
                 nombre: user.nombre,
                 sucursal: user.sucursal,
                 permisos: user.permisos
-            }}, keys.secretJWT,{expiresIn:600})
+            }}, keys.secretJWT,{expiresIn:"10h"})
         
         //Se crea una cookie con el token del usuario
             req.session = {

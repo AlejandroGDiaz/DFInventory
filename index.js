@@ -10,7 +10,8 @@ mongoose.connect(keys.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true
 
 app.use(bodyParser.json());
 app.use(cookieSession({
-  signed: false
+  signed: false,
+  maxAge:60*60*1000 //1 hora
 }));
 
 require("./routes/productsRoutes")(app);
