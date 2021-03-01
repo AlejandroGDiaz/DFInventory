@@ -54,6 +54,18 @@ class OrdenesActivas extends React.Component{
         )
     }
 
+    renderTable(){
+        if(this.state.ordenes.length){
+            return this.renderContent()
+        }else{
+            return (
+                <div className="ui container" style={{textAlign:"center"}}>
+                    <h3>Presiona un botón</h3>
+                </div>
+            )
+        }
+    }
+
     render(){
         if(this.props.user.permisos.includes("admin")||this.props.user.permisos.includes("ordenesActivas")){
             return(
@@ -67,14 +79,14 @@ class OrdenesActivas extends React.Component{
                     </Link>
                     <button className="ui button right floated" onClick={() => this.setState({ordenes:this.props.ordenes})}>Todas</button>
                     <button className="ui button green right floated" onClick={() => {
-                        let ordenesCompletas = this.props.ordenes.filter(orden => orden.completada == true)
+                        let ordenesCompletas = this.props.ordenes.filter(orden => orden.completada === true)
                         this.setState({ordenes:ordenesCompletas})
                         }}>Completas</button>
                     <button className="ui button red right floated" onClick={() => {
-                        let ordenesIncompletas = this.props.ordenes.filter(orden => orden.completada == false)
+                        let ordenesIncompletas = this.props.ordenes.filter(orden => orden.completada === false)
                         this.setState({ordenes:ordenesIncompletas})
                         }}>Incompletas</button>    
-                    {this.renderContent()}
+                    {this.renderTable()}
                 </div>
             )
         }else{

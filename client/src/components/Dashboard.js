@@ -23,7 +23,7 @@ const Dashboard = ({user}) => {
             })
         }else{
             return user.permisos.map((permiso) => {
-                const propsCard = infoCards.find( elemento => elemento.permiso == permiso)
+                const propsCard = infoCards.find( elemento => elemento.permiso === permiso)
                 return( 
                     <Card 
                         key={propsCard.title}
