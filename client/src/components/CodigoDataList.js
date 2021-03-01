@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
-import * as actions from "../actions"
+//import * as actions from "../actions"
+import {fetchCodes} from "../actions"
 
 class CodigoDataList extends React.Component{
 
@@ -31,4 +32,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, actions)(CodigoDataList);
+export default connect(mapStateToProps, {fetchCodes})(CodigoDataList);

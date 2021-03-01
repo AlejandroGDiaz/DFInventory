@@ -142,7 +142,7 @@ module.exports = app => {
 
     app.get("/api/order/active", checkLogin, async(req, res) => {
         try{
-            const order = await Order.find({completada:false}, "numeroDeCotizacion obra fecha contratista responsableDF")
+            const order = await Order.find({}, "numeroDeCotizacion obra fecha contratista responsableDF completada")
             res.send(order)
 
         }catch{

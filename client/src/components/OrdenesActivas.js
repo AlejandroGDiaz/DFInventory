@@ -8,13 +8,18 @@ import Restricted from "./auth/Restricted";
 
 class OrdenesActivas extends React.Component{
 
+    state = {
+        ordenes: []
+    }
+
     componentDidMount(){
         this.props.fetchOrdenesActivas()
     }
 
     renderRows(){
+        console.log(this.state.ordenes)
         return(
-            this.props.ordenes.map(orden => {
+            this.state.ordenes.map(orden => {
                 return(
                     <tr key={orden.numeroDeCotizacion}>
                         <td>{orden.fecha}</td>
@@ -22,6 +27,7 @@ class OrdenesActivas extends React.Component{
                         <td>{orden.obra}</td>
                         <td>{orden.contratista}</td>
                         <td>{orden.responsableDF}</td>
+                        <td className={orden.completada?"icon checkmark positive":"icon close negative"}>{orden.completada?"Completada":"Incompleta"}</td>
                     </tr>
                 )
             })
@@ -38,6 +44,7 @@ class OrdenesActivas extends React.Component{
                         <th>Obra</th>
                         <th>Contratista</th>
                         <th>Responsable de DF</th>
+                        <th>Estado</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,6 +65,15 @@ class OrdenesActivas extends React.Component{
                         style={{marginBottom:"15px"}}>
                         <i className="angle left icon"></i>Regresar
                     </Link>
+                    <button className="ui button right floated" onClick={() => this.setState({ordenes:this.props.ordenes})}>Todas</button>
+                    <button className="ui button green right floated" onClick={() => {
+                        let ordenesCompletas = this.props.ordenes.filter(orden => orden.completada == true)
+                        this.setState({ordenes:ordenesCompletas})
+                        }}>Completas</button>
+                    <button className="ui button red right floated" onClick={() => {
+                        let ordenesIncompletas = this.props.ordenes.filter(orden => orden.completada == false)
+                        this.setState({ordenes:ordenesIncompletas})
+                        }}>Incompletas</button>    
                     {this.renderContent()}
                 </div>
             )

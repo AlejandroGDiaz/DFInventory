@@ -57,8 +57,8 @@ const infoCards = [
     },
     {
         permiso:"ordenesActivas",
-        title: "Órdenes de Compra Activas",
-        descripcion:"Aparecerá una tabla con las órdenes de compra que falten por realizarse",
+        title: "Órdenes de Compra",
+        descripcion:"En base al botón precionado, aparecerá una tala con todas las órdenes de compra o aquellas que estén completas o incompletas",
         route:"/ordenesactivas",
         button:"Buscar"
     }
